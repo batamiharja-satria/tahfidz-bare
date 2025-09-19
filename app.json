@@ -2,6 +2,16 @@
   "expo": {
     "name": "tahfidz-bare",
     "slug": "tahfidz-bare",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "sdkVersion": "54.0.0",
+    "platforms": ["ios", "android"],
+    "android": {
+      "package": "com.batamiharja.tahfidzbare"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "aafce781-9dae-4ba7-8070-600fc814468d"
+      }
+    }
   }
 }
