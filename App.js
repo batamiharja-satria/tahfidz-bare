@@ -1,28 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import { WebView } from "react-native-webview";
-import { Asset } from "expo-asset";
 
 export default function App() {
-  const [uri, setUri] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      const asset = Asset.fromModule(require("./dist/index.html"));
-      await asset.downloadAsync();
-      setUri(asset.localUri || asset.uri);
-    })();
-  }, []);
-
-  if (!uri) return null;
-
   return (
     <SafeAreaView style={styles.container}>
       <WebView
-        source={{ uri }}
+        source={{ uri: "file:///android_asset/index.html" }}
         originWhitelist={["*"]}
-        allowFileAccess
-        allowUniversalAccessFromFileURLs
+        allowFileAccess={true}
+        allowUniversalAccessFromFileURLs={true}
         style={{ flex: 1 }}
       />
     </SafeAreaView>
