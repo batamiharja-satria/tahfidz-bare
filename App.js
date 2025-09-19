@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import { WebView } from "react-native-webview";
-import * as FileSystem from "expo-file-system";
 import { Asset } from "expo-asset";
 
 export default function App() {
@@ -10,7 +9,7 @@ export default function App() {
   useEffect(() => {
     (async () => {
       const asset = Asset.fromModule(require("./dist/index.html"));
-      await asset.downloadAsync(); // pastiin kebaca
+      await asset.downloadAsync();
       setUri(asset.localUri || asset.uri);
     })();
   }, []);
@@ -19,8 +18,8 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <WebView 
-        source={{ uri }} 
+      <WebView
+        source={{ uri }}
         originWhitelist={["*"]}
         allowFileAccess
         allowUniversalAccessFromFileURLs
