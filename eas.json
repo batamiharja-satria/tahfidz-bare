@@ -1,11 +1,15 @@
-{
+  {
   "cli": {
-    "version": ">= 3.0.0"
+    "version": ">= 3.16.0",
+    "appVersionSource": "remote"
   },
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
     },
     "preview": {
       "distribution": "internal",
@@ -14,7 +18,12 @@
       }
     },
     "production": {
-      "autoIncrement": true
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "ios": {
+        "buildType": "app-store"
+      }
     }
   },
   "submit": {
