@@ -80,6 +80,13 @@ android {
     androidResources {
         ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~'
     }
+
+    // ✅ Tambahin ini biar folder dist/ ikut masuk ke assets
+    sourceSets {
+        main {
+            assets.srcDirs = ['src/main/assets', '../../dist']
+        }
+    }
 }
 
 // Apply static values from `gradle.properties`
