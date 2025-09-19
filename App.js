@@ -1,23 +1,35 @@
-import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
-import { WebView } from 'react-native-webview';
+import React, { useEffect, useState } from "react";
+import { SafeAreaView, StyleSheet } from "react-native";
+import { WebView } from "react-native-webview";
+import * as FileSystem from "expo-file-system";
+import { Asset } from "expo-asset";
 
 export default function App() {
+  const [uri, setUri] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const asset = Asset.fromModule(require("./dist/index.html"));
+      await asset.downloadAsync(); // pastiin kebaca
+      setUri(asset.localUri || asset.uri);
+    })();
+  }, []);
+
+  if (!uri) return null;
+
   return (
     <SafeAreaView style={styles.container}>
       <WebView 
-        source={{ uri: 'file:///android_asset/dist/index.html' }} 
+        source={{ uri }} 
+        originWhitelist={["*"]}
+        allowFileAccess
+        allowUniversalAccessFromFileURLs
         style={{ flex: 1 }}
-        originWhitelist={['*']}
-        allowFileAccess={true}
-        allowUniversalAccessFromFileURLs={true}
       />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: { flex: 1 },
 });
